@@ -116,9 +116,10 @@ public class User implements BeanNameAware {
     }
 
     public static User createUser() {
+        System.out.println("通过静态工厂方法获取Bean");
         User user = new User();
         user.setId(1L);
-        user.setName("小马哥");
+        user.setName("Q10Viking");
         return user;
     }
 

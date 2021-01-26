@@ -8,9 +8,9 @@ public class BeanInstanceDemo {
     public static void main(String[] args) {
         BeanFactory beanFactory = new ClassPathXmlApplicationContext("classpath:/META-INF/bean-instantance-context.xml");
 
-        User user1 = beanFactory.getBean("user-by-static-method",User.class);
-        User user2 = beanFactory.getBean("user-by-instance-method",User.class);
 
-        System.out.println(user2);
+        User user3 = beanFactory.getBean("user-factory-bean",User.class);
+
+        System.out.println(user3);
     }
 }

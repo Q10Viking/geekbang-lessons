@@ -39,43 +39,21 @@ public class ObjectProviderDemo { // @Configuration 是非必须注解
         applicationContext.refresh();
         // 依赖查找集合对象
         lookupByObjectProvider(applicationContext);
-        lookupIfAvailable(applicationContext);
-        lookupByStreamOps(applicationContext);
+
 
         // 关闭应用上下文
         applicationContext.close();
 
     }
 
-    private static void lookupByStreamOps(AnnotationConfigApplicationContext applicationContext) {
-        ObjectProvider<String> objectProvider = applicationContext.getBeanProvider(String.class);
-//        Iterable<String> stringIterable = objectProvider;
-//        for (String string : stringIterable) {
-//            System.out.println(string);
-//        }
-        // Stream -> Method reference
-        objectProvider.stream().forEach(System.out::println);
-    }
-
-    private static void lookupIfAvailable(AnnotationConfigApplicationContext applicationContext) {
-        ObjectProvider<User> userObjectProvider = applicationContext.getBeanProvider(User.class);
-        User user = userObjectProvider.getIfAvailable(User::createUser);
-        System.out.println("当前 User 对象：" + user);
-    }
-
     @Bean
-    @Primary
-    public String helloWorld() { // 方法名就是 Bean 名称 = "helloWorld"
-        return "Hello,World";
-    }
-
-    @Bean
-    public String message() {
-        return "Message";
+    public String helloWorld(){
+        return "Hello Q10Viking";
     }
 
     private static void lookupByObjectProvider(AnnotationConfigApplicationContext applicationContext) {
-        ObjectProvider<String> objectProvider = applicationContext.getBeanProvider(String.class);
-        System.out.println(objectProvider.getObject());
+        ObjectProvider<String> beanProvider = applicationContext.getBeanProvider(String.class);
+        System.out.println(beanProvider.getObject());
     }
+
 }

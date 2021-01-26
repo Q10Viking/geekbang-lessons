@@ -36,4 +36,9 @@ public class DefaultUserBean implements UserFactory, InitializingBean, Disposabl
     public void doDestroy(){
         System.out.println("@Bean方式销毁");
     }
+
+    @Override
+    protected void finalize() throws Throwable {
+        System.out.println("DefaultUserFactory 正在被垃圾回收");
+    }
 }

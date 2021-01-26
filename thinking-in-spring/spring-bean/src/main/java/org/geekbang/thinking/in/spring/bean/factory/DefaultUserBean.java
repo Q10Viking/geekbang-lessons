@@ -1,10 +1,12 @@
 package org.geekbang.thinking.in.spring.bean.factory;
 
+import org.springframework.beans.factory.DisposableBean;
 import org.springframework.beans.factory.InitializingBean;
 
 import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
 
-public class DefaultUserBean implements UserFactory, InitializingBean {
+public class DefaultUserBean implements UserFactory, InitializingBean, DisposableBean {
 
     @PostConstruct
     public void init(){
@@ -18,5 +20,20 @@ public class DefaultUserBean implements UserFactory, InitializingBean {
     @Override
     public void afterPropertiesSet() throws Exception {
         System.out.println("实现InitializingBean");
+    }
+
+    @PreDestroy
+    public void preDestroy(){
+        System.out.println("@PreDestroy: Bean 销毁");
+    }
+
+
+    @Override
+    public void destroy() throws Exception {
+        System.out.println("DisposableBean#destroy: Bean 销毁");
+    }
+
+    public void doDestroy(){
+        System.out.println("@Bean方式销毁");
     }
 }

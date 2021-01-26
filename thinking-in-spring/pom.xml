@@ -13,24 +13,7 @@
         <module>ioc-container-overview</module>
         <module>spring-bean</module>
         <module>dependency-lookup</module>
-        <module>dependency-injection</module>
-        <module>dependency-source</module>
-        <module>bean-scope</module>
-        <module>bean-lifecycle</module>
-        <module>configuration-metadata</module>
-        <module>resource</module>
-        <module>i18n</module>
-        <module>validation</module>
-        <module>data-binding</module>
-        <module>conversion</module>
-        <module>generic</module>
-        <module>event</module>
-        <module>annotation</module>
-        <module>environment</module>
-        <module>application-context-lifecycle</module>
-        <module>questions</module>
-        <module>aop-overview</module>
-        <module>aop-features</module>
+        <module>spring-bean</module>
     </modules>
 
     <properties>

@@ -15,6 +15,7 @@
         <module>dependency-lookup</module>
         <module>spring-bean</module>
         <module>java-eight</module>
+        <module>dependency-inject</module>
     </modules>
 
     <properties>

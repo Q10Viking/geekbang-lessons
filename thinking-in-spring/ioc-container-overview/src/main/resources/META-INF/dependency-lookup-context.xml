@@ -41,4 +41,8 @@
         <property name="targetBeanName" value="user"/>
     </bean>
 
+    <bean id="testPersonQQ" class="org.geekbang.thinking.in.spring.ioc.overview.domain.TestPerson">
+        <property name="name" value="Q10Viking"/>
+    </bean>
+
 </beans>

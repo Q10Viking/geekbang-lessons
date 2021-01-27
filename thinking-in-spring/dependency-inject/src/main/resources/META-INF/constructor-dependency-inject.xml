@@ -7,7 +7,8 @@
 
     <import resource="classpath:/META-INF/dependency-lookup-context.xml" />
 
-    <bean id="userHolder" class="org.geekbang.thinking.in.spring.inject.UserHolder" autowire="byType">
+    <bean id="userHolder" class="org.geekbang.thinking.in.spring.inject.UserHolder">
+        <constructor-arg ref="user"/>
     </bean>
 
 </beans>

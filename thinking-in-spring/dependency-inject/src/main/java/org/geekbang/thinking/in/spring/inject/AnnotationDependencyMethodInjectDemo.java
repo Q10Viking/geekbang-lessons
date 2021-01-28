@@ -14,6 +14,7 @@ public class AnnotationDependencyMethodInjectDemo {
 
     private UserHolder userHolder1;
     private UserHolder userHolder2;
+    private User user;
 
     @Autowired
     public void initUserHolder1(UserHolder userHolder){ this.userHolder1 = userHolder; }
@@ -25,6 +26,9 @@ public class AnnotationDependencyMethodInjectDemo {
     public UserHolder userHolder(User user){
         return new UserHolder(user);
     }
+
+    @Bean
+    public void user1(User user){ this.user = user;}
 
 
     public static void main(String[] args) {
@@ -43,6 +47,7 @@ public class AnnotationDependencyMethodInjectDemo {
         AnnotationDependencyMethodInjectDemo bean = applicationContext.getBean(AnnotationDependencyMethodInjectDemo.class);
         System.out.println(bean.userHolder1);
         System.out.println(bean.userHolder1 == bean.userHolder2);    // true
+        System.out.println(bean.user);
 
         applicationContext.close();
     }

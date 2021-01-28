@@ -28,11 +28,11 @@ public class AnnotationDependencyInjectResolverDemo {
 
     //  依赖注入过程中支持的类型
 
-    @Autowired
-    private Map<String ,User> map;  //  {user=user,superUser=superUser}
-
-    @Autowired
-    private Optional<User> optionalUser;    //  optional(superUser)
+//    @Autowired
+//    private Map<String ,User> map;  //  {user=user,superUser=superUser}
+//
+//    @Autowired
+//    private Optional<User> optionalUser;    //  optional(superUser)
 
 
     public static void main(String[] args) {
@@ -49,8 +49,8 @@ public class AnnotationDependencyInjectResolverDemo {
 
         AnnotationDependencyInjectResolverDemo bean = applicationContext.getBean(AnnotationDependencyInjectResolverDemo.class);
         System.out.println(bean.user);
-        System.out.println(bean.map);
-        System.out.println(bean.optionalUser);
+//        System.out.println(bean.map);
+//        System.out.println(bean.optionalUser);
 
         applicationContext.close();
 

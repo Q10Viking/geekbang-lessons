@@ -39,12 +39,12 @@ public class DependencyLookupDemo {
         // 启动 Spring 应用上下文
         BeanFactory beanFactory = new ClassPathXmlApplicationContext("classpath:/META-INF/dependency-lookup-context.xml");
         // 按照类型查找
-        lookupByType(beanFactory);
+//        lookupByType(beanFactory);
         // 按照类型查找结合对象
-        lookupCollectionByType(beanFactory);
+//        lookupCollectionByType(beanFactory);
         // 通过注解查找对象
-        lookupByAnnotationType(beanFactory);
-
+//        lookupByAnnotationType(beanFactory);
+        lookupInLazy(beanFactory);
 //        lookupInRealTime(beanFactory);
 //        lookupInLazy(beanFactory);
     }
@@ -72,8 +72,9 @@ public class DependencyLookupDemo {
 
     private static void lookupInLazy(BeanFactory beanFactory) {
         ObjectFactory<User> objectFactory = (ObjectFactory<User>) beanFactory.getBean("objectFactory");
-        User user = objectFactory.getObject();
-        System.out.println("延迟查找：" + user);
+        User user1 = objectFactory.getObject();
+        User user2 = objectFactory.getObject();
+        System.out.println(user1 == user2);
     }
 
     private static void lookupInRealTime(BeanFactory beanFactory) {

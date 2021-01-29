@@ -5,6 +5,7 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Scope;
 
+import java.util.Arrays;
 import java.util.Random;
 
 public class ThreadLocalScopeDemo {
@@ -23,7 +24,7 @@ public class ThreadLocalScopeDemo {
         }
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
         AnnotationConfigApplicationContext applicationContext = new AnnotationConfigApplicationContext();
         applicationContext.register(ThreadLocalScopeDemo.class);
         //  注册自定义作用域
@@ -32,8 +33,13 @@ public class ThreadLocalScopeDemo {
         });
 
         applicationContext.refresh();
+        System.out.printf("容器中注入的Bean: %d%n",applicationContext.getBeanDefinitionCount());
         lookup(applicationContext);
-        while(true){}
+        while(true){
+            Thread.sleep(1000);
+            System.out.printf("容器中注入的Bean: %d%n",applicationContext.getBeanDefinitionCount());
+            System.out.println(Arrays.toString(applicationContext.getBeanDefinitionNames()));
+        }
 //        applicationContext.close();
     }
 
@@ -51,13 +57,17 @@ public class ThreadLocalScopeDemo {
     }
 }
 /**
+ 容器中注入的Bean: 7
+ 容器中注入的Bean: 7
  User Bean [user] 初始化...
  User Bean [user] 初始化...
- [ Thread id : 15 ] user = User{id=166805514510588, beanName='user'}
- [ Thread id : 15 ] user = User{id=166805514510588, beanName='user'}
+ [ Thread id : 14 ] user = User{id=170617962737675, name='null', beanName='user'}
+ [ Thread id : 14 ] user = User{id=170617962737675, name='null', beanName='user'}
  User Bean [user] 初始化...
- [ Thread id : 14 ] user = User{id=166805514510588, beanName='user'}
- [ Thread id : 13 ] user = User{id=166805514528211, beanName='user'}
- [ Thread id : 13 ] user = User{id=166805514528211, beanName='user'}
- [ Thread id : 14 ] user = User{id=166805514510588, beanName='user'}
+ [ Thread id : 15 ] user = User{id=170617962711704, name='null', beanName='user'}
+ [ Thread id : 15 ] user = User{id=170617962711704, name='null', beanName='user'}
+ [ Thread id : 13 ] user = User{id=170617962737675, name='null', beanName='user'}
+ [ Thread id : 13 ] user = User{id=170617962737675, name='null', beanName='user'}
+ 容器中注入的Bean: 7
+ 容器中注入的Bean: 7
  */

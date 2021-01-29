@@ -157,7 +157,7 @@ public class User implements BeanNameAware {
     public String toString() {
         return "User{" +
                 "id=" + id +
-//                ", name='" + name + '\'' +
+                ", name='" + name + '\'' +
 //                ", city=" + city +
 //                ", workCities=" + Arrays.toString(workCities) +
 //                ", lifeCities=" + lifeCities +

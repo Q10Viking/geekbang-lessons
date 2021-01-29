@@ -116,7 +116,6 @@ public class User implements BeanNameAware {
     }
 
     public static User createUser() {
-        System.out.println("通过静态工厂方法获取Bean");
         User user = new User();
         user.setId(1L);
         user.setName("Q10Viking");
@@ -158,14 +157,14 @@ public class User implements BeanNameAware {
     public String toString() {
         return "User{" +
                 "id=" + id +
-                ", name='" + name + '\'' +
-                ", city=" + city +
-                ", workCities=" + Arrays.toString(workCities) +
-                ", lifeCities=" + lifeCities +
-                ", configFileLocation=" + configFileLocation +
-                ", company=" + company +
-                ", context=" + context +
-                ", contextAsText='" + contextAsText + '\'' +
+//                ", name='" + name + '\'' +
+//                ", city=" + city +
+//                ", workCities=" + Arrays.toString(workCities) +
+//                ", lifeCities=" + lifeCities +
+//                ", configFileLocation=" + configFileLocation +
+//                ", company=" + company +
+//                ", context=" + context +
+//                ", contextAsText='" + contextAsText + '\'' +
                 ", beanName='" + beanName + '\'' +
                 '}';
     }

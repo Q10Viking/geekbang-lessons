@@ -1,13 +1,11 @@
 package org.geekbang.thinking.in.spring.lifecycle;
 
 import org.springframework.beans.factory.support.DefaultListableBeanFactory;
-import org.springframework.beans.factory.support.PropertiesBeanDefinitionReader;
 import org.springframework.beans.factory.xml.XmlBeanDefinitionReader;
-import org.springframework.core.io.ClassPathResource;
-import org.springframework.core.io.Resource;
-import org.springframework.core.io.support.EncodedResource;
 
-public class XMLConfigBeanDefinitionDemo {
+import java.util.Arrays;
+
+public class MergeConfigBeanDefinitionDemo {
     public static void main(String[] args) {
         DefaultListableBeanFactory beanFactory = new DefaultListableBeanFactory();
 
@@ -15,9 +13,10 @@ public class XMLConfigBeanDefinitionDemo {
 
         String path = "META-INF/dependency-lookup-context.xml";
         reader.loadBeanDefinitions(path);
-
-        //  User{id=1, name='黄壮壮', beanName='user'}
-        System.out.println(beanFactory.getBean("user"));
+        beanFactory.getBean("user");
+        //  在获取Bean的时候，进行merge
+        System.out.println(beanFactory.getBean("superUser"));
+        Arrays.stream(beanFactory.getBeanDefinitionNames()).forEach(System.out::println);
         System.out.printf("bean 的数量 %d\n",beanFactory.getBeanDefinitionCount());
     }
 }

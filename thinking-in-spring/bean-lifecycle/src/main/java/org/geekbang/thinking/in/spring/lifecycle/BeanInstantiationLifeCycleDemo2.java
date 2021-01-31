@@ -7,17 +7,20 @@ import org.springframework.beans.factory.support.DefaultListableBeanFactory;
 import org.springframework.beans.factory.xml.XmlBeanDefinitionReader;
 import org.springframework.util.ObjectUtils;
 
-public class BeanInstantiationLifeCycleDemo {
+public class BeanInstantiationLifeCycleDemo2 {
 
     public static void main(String[] args) {
         DefaultListableBeanFactory beanFactory = new DefaultListableBeanFactory();
         //  添加自定义的BeanPostProcessor
         beanFactory.addBeanPostProcessor(new MyInstantiationAwareBeanPostProcessor());
-        String xmlPath = "META-INF/dependency-lookup-context.xml";
+        String[] xmlPath = {
+                "META-INF/bean-constructor-dependency-inject.xml",
+                "META-INF/dependency-lookup-context.xml"
+        };
         XmlBeanDefinitionReader reader = new XmlBeanDefinitionReader(beanFactory);
         reader.loadBeanDefinitions(xmlPath);
 
-        Object res = beanFactory.getBean("superUser");
+        Object res = beanFactory.getBean("userHolder");
         System.out.println(res);
 
 

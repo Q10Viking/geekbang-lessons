@@ -3,15 +3,17 @@ package org.geekbang.thinking.in.spring.lifecycle;
 import org.geekbang.thinking.in.spring.ioc.overview.domain.User;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.*;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.context.EnvironmentAware;
 import org.springframework.core.env.Environment;
 
 import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
 
 public class UserHolder implements BeanFactoryAware, BeanClassLoaderAware, BeanNameAware , ApplicationContextAware, EnvironmentAware
-        , InitializingBean,SmartInitializingSingleton {
+        , InitializingBean,SmartInitializingSingleton,DisposableBean {
     private final User user;
     private Integer number;
     private String version;
@@ -111,5 +113,33 @@ public class UserHolder implements BeanFactoryAware, BeanClassLoaderAware, BeanN
         setVersion(nextVersion);
 
         System.out.println("初始化完成 afterSingletonsInstantiated: " + prevVersion + " => " + nextVersion);
+    }
+
+    @PreDestroy
+    public void preDestroy(){
+        final String nextVersion = "V10.0";
+        String prevVersion = this.version;
+        setVersion(nextVersion);
+
+        System.out.println("销毁阶段 preDestroy: " + prevVersion + " => " + nextVersion);
+    }
+
+    //  DisposableBean
+    @Override
+    public void destroy() throws Exception {
+        final String nextVersion = "V11.0";
+        String prevVersion = this.version;
+        setVersion(nextVersion);
+
+        System.out.println("销毁阶段 destroy: " + prevVersion + " => " + nextVersion);
+    }
+
+    //  自定义销毁阶段
+    public void doDestroy(){
+        final String nextVersion = "V12.0";
+        String prevVersion = this.version;
+        setVersion(nextVersion);
+
+        System.out.println("销毁阶段 doDestroy: " + prevVersion + " => " + nextVersion);
     }
 }

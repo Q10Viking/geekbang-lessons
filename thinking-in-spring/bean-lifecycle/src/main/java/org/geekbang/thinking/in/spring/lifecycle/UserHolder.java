@@ -11,7 +11,7 @@ import org.springframework.core.env.Environment;
 import javax.annotation.PostConstruct;
 
 public class UserHolder implements BeanFactoryAware, BeanClassLoaderAware, BeanNameAware , ApplicationContextAware, EnvironmentAware
-        , InitializingBean {
+        , InitializingBean,SmartInitializingSingleton {
     private final User user;
     private Integer number;
     private String version;
@@ -104,4 +104,12 @@ public class UserHolder implements BeanFactoryAware, BeanClassLoaderAware, BeanN
         System.out.println("初始化 doInit: " + prevVersion + " => " + nextVersion);
     }
 
+    @Override
+    public void afterSingletonsInstantiated() {
+        final String nextVersion = "V8.0";
+        String prevVersion = this.version;
+        setVersion(nextVersion);
+
+        System.out.println("初始化完成 afterSingletonsInstantiated: " + prevVersion + " => " + nextVersion);
+    }
 }

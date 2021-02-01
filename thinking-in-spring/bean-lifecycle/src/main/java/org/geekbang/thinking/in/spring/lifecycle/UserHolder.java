@@ -6,14 +6,20 @@ import org.springframework.beans.factory.BeanClassLoaderAware;
 import org.springframework.beans.factory.BeanFactory;
 import org.springframework.beans.factory.BeanFactoryAware;
 import org.springframework.beans.factory.BeanNameAware;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.ApplicationContextAware;
+import org.springframework.context.EnvironmentAware;
+import org.springframework.core.env.Environment;
 
-public class UserHolder implements BeanFactoryAware, BeanClassLoaderAware, BeanNameAware {
+public class UserHolder implements BeanFactoryAware, BeanClassLoaderAware, BeanNameAware , ApplicationContextAware, EnvironmentAware {
     private final User user;
     private Integer number;
     private String version;
     private BeanFactory beanFactory;
     private ClassLoader classLoader;
     private String beanName;
+    private Environment environment;
+    private ApplicationContext applicationContext;
 
     public UserHolder(User user12) {
         this.user = user12;
@@ -58,5 +64,15 @@ public class UserHolder implements BeanFactoryAware, BeanClassLoaderAware, BeanN
     @Override
     public void setBeanName(String name) {
         this.beanName = name;
+    }
+
+    @Override
+    public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
+        this.applicationContext = applicationContext;
+    }
+
+    @Override
+    public void setEnvironment(Environment environment) {
+        this.environment = environment;
     }
 }

@@ -2,16 +2,16 @@ package org.geekbang.thinking.in.spring.lifecycle;
 
 import org.geekbang.thinking.in.spring.ioc.overview.domain.User;
 import org.springframework.beans.BeansException;
-import org.springframework.beans.factory.BeanClassLoaderAware;
-import org.springframework.beans.factory.BeanFactory;
-import org.springframework.beans.factory.BeanFactoryAware;
-import org.springframework.beans.factory.BeanNameAware;
+import org.springframework.beans.factory.*;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.context.EnvironmentAware;
 import org.springframework.core.env.Environment;
 
-public class UserHolder implements BeanFactoryAware, BeanClassLoaderAware, BeanNameAware , ApplicationContextAware, EnvironmentAware {
+import javax.annotation.PostConstruct;
+
+public class UserHolder implements BeanFactoryAware, BeanClassLoaderAware, BeanNameAware , ApplicationContextAware, EnvironmentAware
+        , InitializingBean {
     private final User user;
     private Integer number;
     private String version;
@@ -75,4 +75,33 @@ public class UserHolder implements BeanFactoryAware, BeanClassLoaderAware, BeanN
     public void setEnvironment(Environment environment) {
         this.environment = environment;
     }
+
+    @PostConstruct
+    public void postConstruct(){
+        final String nextVersion = "V4.0";
+        String prevVersion = this.version;
+        setVersion(nextVersion);
+
+        System.out.println("初始化 postConstruct: " + prevVersion + " => " + nextVersion);
+    }
+
+
+    @Override
+    public void afterPropertiesSet() throws Exception {
+        final String nextVersion = "V5.0";
+        String prevVersion = this.version;
+        setVersion(nextVersion);
+
+        System.out.println("初始化 afterPropertiesSet: " + prevVersion + " => " + nextVersion);
+    }
+
+
+    public void doInit(){
+        final String nextVersion = "V6.0";
+        String prevVersion = this.version;
+        setVersion(nextVersion);
+
+        System.out.println("初始化 doInit: " + prevVersion + " => " + nextVersion);
+    }
+
 }

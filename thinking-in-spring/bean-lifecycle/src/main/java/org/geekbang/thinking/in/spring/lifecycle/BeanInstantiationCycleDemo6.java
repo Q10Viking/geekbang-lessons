@@ -1,7 +1,5 @@
 package org.geekbang.thinking.in.spring.lifecycle;
 
-import org.geekbang.thinking.in.spring.ioc.overview.domain.SuperUser;
-import org.geekbang.thinking.in.spring.ioc.overview.domain.User;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.MutablePropertyValues;
 import org.springframework.beans.PropertyValues;
@@ -12,12 +10,14 @@ import org.springframework.beans.factory.xml.XmlBeanDefinitionReader;
 import org.springframework.context.annotation.CommonAnnotationBeanPostProcessor;
 import org.springframework.util.ObjectUtils;
 
-public class BeanInstantiationCycleDemo5 {
+public class BeanInstantiationCycleDemo6 {
 
     public static void main(String[] args) {
         DefaultListableBeanFactory beanFactory = new DefaultListableBeanFactory();
         //  添加自定义的BeanPostProcessor
         beanFactory.addBeanPostProcessor(new MyInstantiationAwareBeanPostProcessor());
+        //  添加CommonAnnotationBeanPostProcessor 解决 @PostConstructor
+        beanFactory.addBeanPostProcessor(new CommonAnnotationBeanPostProcessor());
 
         String[] xmlPath = {
                 "META-INF/dependency-lookup-context.xml",
@@ -70,7 +70,7 @@ public class BeanInstantiationCycleDemo5 {
                 userHolder.setVersion(nextVersion);
                 System.out.println("初始化前阶段 postProcessBeforeInitialization: "+preVersion + " => " + nextVersion);
             }
-            return null;
+            return bean;
         }
 
     }
@@ -78,5 +78,8 @@ public class BeanInstantiationCycleDemo5 {
 /**
  属性填充前 postProcessProperties: V1.0 =》 V2.0
  初始化前阶段 postProcessBeforeInitialization: V2.0 => V3.0
- UserHolder{user=SuperUser{address='杭州'} User{id=1, name='黄壮壮', beanName='superUser'}, number=100, version='V3.0', beanName='userHolder'}
+ 初始化 postConstruct: V3.0 => V4.0
+ 初始化 afterPropertiesSet: V4.0 => V5.0
+ 初始化 doInit: V5.0 => V6.0
+ UserHolder{user=SuperUser{address='杭州'} User{id=1, name='黄壮壮', beanName='superUser'}, number=100, version='V6.0', beanName='userHolder'}
  */

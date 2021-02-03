@@ -158,7 +158,7 @@ public class User implements BeanNameAware {
         return "User{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-//                ", city=" + city +
+                ", city=" + city +
 //                ", workCities=" + Arrays.toString(workCities) +
 //                ", lifeCities=" + lifeCities +
 //                ", configFileLocation=" + configFileLocation +

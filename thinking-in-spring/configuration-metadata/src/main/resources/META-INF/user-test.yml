@@ -1,0 +1,4 @@
+# user-test.yml
+test-user:
+  id: 7
+  name: yml test

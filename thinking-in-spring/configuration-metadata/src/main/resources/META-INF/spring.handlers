@@ -1,0 +1,2 @@
+#   定义Namespace 与NamespaceHandler映射
+http\://time.geekbang.org/schema/users = org.geekbang.thinking.in.spring.configuration.meta.UsersNamespaceHandler

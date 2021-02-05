@@ -28,6 +28,7 @@ public class InjectResourceLoaderDemo implements ResourceLoaderAware {
     public static void main(String[] args) {
         AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext();
         context.register(InjectResourceLoaderDemo.class);
+
         context.refresh();
         context.close();
     }

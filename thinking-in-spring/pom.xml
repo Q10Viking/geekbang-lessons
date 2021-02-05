@@ -22,6 +22,7 @@
         <module>configuration-metadata</module>
         <module>resource</module>
         <module>i18n</module>
+        <module>java-nio</module>
     </modules>
 
     <properties>

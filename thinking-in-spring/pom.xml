@@ -23,6 +23,7 @@
         <module>resource</module>
         <module>i18n</module>
         <module>java-nio</module>
+        <module>java-socket</module>
     </modules>
 
     <properties>
